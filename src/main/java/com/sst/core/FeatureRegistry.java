@@ -80,174 +80,177 @@ public final class FeatureRegistry {
         // ====== MineFargo 本体魂石 ======================================
         // ================================================================
 
-        // ===== 矿石之魂聚合 + 9 子魂石 =====
+        // ===== 矿物之魂聚合 + 9 子魂石（译名取自 mine_fargo zh_cn.json） =====
         Set<String> oresAgg = Set.of(SOUL_OF_ORES, SOUL_OF_INOLIA);
-        addSoul("soul_of_ores", "矿石之魂", "综合矿石系联动效果，可整体开关", CORE_ORES, null);
-        addSoul("coal_soul_stone",              "煤矿魂石",       "火把照明半径·熔炉速度",            CORE_ORES, "soul_of_ores", union(oresAgg, COAL));
-        addSoul("copper_soul_stone",            "铜矿魂石",       "雷击减伤·避雷针效果",              CORE_ORES, "soul_of_ores", union(oresAgg, COPPER));
-        addSoul("lapis_lazuli_soul_stone",      "青金石魂石",     "附魔加成·经验加成",                CORE_ORES, "soul_of_ores", union(oresAgg, LAPIS));
-        addSoul("iron_soul_stone",              "铁矿魂石",       "护甲/韧性加成·修理铁砧打折",       CORE_ORES, "soul_of_ores", union(oresAgg, IRON));
-        addSoul("redstone_soul_stone",          "红石魂石",       "充能信标·范围效果增强",            CORE_ORES, "soul_of_ores", union(oresAgg, REDSTONE));
-        addSoul("gold_soul_stone",              "金矿魂石",       "猪灵不攻击·金锭掉落加成",          CORE_ORES, "soul_of_ores", union(oresAgg, GOLD));
-        addSoul("emerald_soul_stone",           "绿宝石魂石",     "村民交易打折·流浪商人礼遇",        CORE_ORES, "soul_of_ores", union(oresAgg, EMERALD));
-        addSoul("diamond_soul_stone",           "钻石魂石",       "挖掘速度·挖掘幸运加成",            CORE_ORES, "soul_of_ores", union(oresAgg, DIAMOND));
-        addSoul("netherite_soul_stone",         "下界合金魂石",   "击退抗性·熔岩游泳·伤害减免",      CORE_ORES, "soul_of_ores", union(oresAgg, NETHERITE));
+        addSoul("soul_of_ores", "矿物之魂", "综合矿物系联动效果，可整体开关", CORE_ORES, null);
+        addSoul("coal_soul_stone",              "煤炭魂石",       "提升移动速度",                      CORE_ORES, "soul_of_ores", union(oresAgg, COAL));
+        addSoul("copper_soul_stone",            "铜魂石",         "提升挖掘速度",                      CORE_ORES, "soul_of_ores", union(oresAgg, COPPER));
+        addSoul("lapis_lazuli_soul_stone",      "青金石魂石",     "击杀实体掉落的经验提升",            CORE_ORES, "soul_of_ores", union(oresAgg, LAPIS));
+        addSoul("iron_soul_stone",              "铁魂石",         "提升护甲值",                        CORE_ORES, "soul_of_ores", union(oresAgg, IRON));
+        addSoul("redstone_soul_stone",          "红石魂石",       "提升攻击速度",                      CORE_ORES, "soul_of_ores", union(oresAgg, REDSTONE));
+        addSoul("gold_soul_stone",              "金魂石",         "附魔时提升附魔等级",                CORE_ORES, "soul_of_ores", union(oresAgg, GOLD));
+        addSoul("emerald_soul_stone",           "绿宝石魂石",     "提升村民声望降低交易价格",          CORE_ORES, "soul_of_ores", union(oresAgg, EMERALD));
+        addSoul("diamond_soul_stone",           "钻石魂石",       "提升抢夺与时运等级",                CORE_ORES, "soul_of_ores", union(oresAgg, DIAMOND));
+        addSoul("netherite_soul_stone",         "下界合金魂石",   "提升击退抗性与护甲韧性",            CORE_ORES, "soul_of_ores", union(oresAgg, NETHERITE));
 
         // ===== 自然之魂聚合 + 8 子魂石 =====
         Set<String> natureAgg = Set.of(SOUL_OF_NATURE, SOUL_OF_INOLIA);
         addSoul("soul_of_nature", "自然之魂", "综合自然系联动效果，可整体开关", CORE_NATURE, null);
-        addSoul("snow_soul_stone",       "雪原魂石",   "细雪不陷·冰霜行者·冰冻免疫",       CORE_NATURE, "soul_of_nature", union(natureAgg, SNOW));
-        addSoul("lava_soul_stone",       "熔岩魂石",   "熔岩游泳·燃烧免疫·火焰附加",       CORE_NATURE, "soul_of_nature", union(natureAgg, LAVA));
-        addSoul("mushroom_soul_stone",   "蘑菇魂石",   "哞菇转换·炖菜效果·孢子效果",        CORE_NATURE, "soul_of_nature", union(natureAgg, MUSHROOM));
-        addSoul("nether_soul_stone",     "下界魂石",   "下界环境增益·恶魂不主动攻击",       CORE_NATURE, "soul_of_nature", union(natureAgg, NETHER));
-        addSoul("ender_soul_stone",      "末影魂石",   "随机传送·末影人不怒·末地石加速",    CORE_NATURE, "soul_of_nature", union(natureAgg, ENDER));
-        addSoul("ocean_soul_stone",      "海洋魂石",   "水中呼吸·挖掘速度·海豚恩惠",        CORE_NATURE, "soul_of_nature", union(natureAgg, OCEAN));
-        addSoul("lush_soul_stone",       "繁茂魂石",   "苔藓加速·孢子花·发光浆果",          CORE_NATURE, "soul_of_nature", union(natureAgg, LUSH));
-        addSoul("forest_soul_stone",     "森林魂石",   "花粉传播·蜜蜂友好·自然再生",        CORE_NATURE, "soul_of_nature", union(natureAgg, FOREST));
+        addSoul("snow_soul_stone",       "冰雪魂石",   "攻击附加缓慢I，免疫冻结伤害",       CORE_NATURE, "soul_of_nature", union(natureAgg, SNOW));
+        addSoul("lava_soul_stone",       "熔岩魂石",   "可在熔岩上行走，获得火焰伤害减免",  CORE_NATURE, "soul_of_nature", union(natureAgg, LAVA));
+        addSoul("mushroom_soul_stone",   "蘑菇魂石",   "食用碗装食物获得力量I，概率不消耗", CORE_NATURE, "soul_of_nature", union(natureAgg, MUSHROOM));
+        addSoul("nether_soul_stone",     "下界魂石",   "位于下界维度时获得伤害增幅",        CORE_NATURE, "soul_of_nature", union(natureAgg, NETHER));
+        addSoul("ender_soul_stone",      "末地魂石",   "对末影人增伤，受其伤害减免",        CORE_NATURE, "soul_of_nature", union(natureAgg, ENDER));
+        addSoul("ocean_soul_stone",      "海洋魂石",   "可在水面行走，提升游泳速度",        CORE_NATURE, "soul_of_nature", union(natureAgg, OCEAN));
+        addSoul("lush_soul_stone",       "翠绿魂石",   "每3秒回复饱和度与饥饿度",           CORE_NATURE, "soul_of_nature", union(natureAgg, LUSH));
+        addSoul("forest_soul_stone",     "森林魂石",   "潜行时催熟周围农作物",              CORE_NATURE, "soul_of_nature", union(natureAgg, FOREST));
 
         // ===== 超然之魂子功能（锚定魂石已移除——属技能类，不应设开关） =====
         Set<String> supAgg = Set.of(SOUL_OF_SUPERNATURAL, SOUL_OF_INOLIA);
-        add("magnet",   "磁铁魂石",       "吸附附近掉落物与经验球",
+        add("magnet",   "磁铁魂石",       "每秒吸引周围物品和经验球",
                 FeatureDef.Type.MF_OPEN, CORE_SUPERNATURAL, MF_MAGNET_OPEN, union(supAgg, MAGNET));
-        add("hazard",   "危险魂石",       "周期性自动攻击最近敌人",
+        add("hazard",   "危险魂石",       "周期性攻击最近的非随从实体",
                 FeatureDef.Type.MF_OPEN, CORE_SUPERNATURAL, MF_HAZARD_OPEN, union(supAgg, HAZARD));
-        add("undying",  "不死魂石",       "致命伤害时免死并回血",
+        add("undying",  "替死魂石",       "致命伤害时保留生命值并回血",
                 FeatureDef.Type.SST, CORE_SUPERNATURAL, null, union(supAgg, UNDYING));
-        add("ega",      "金果魂石",       "低血量时自动触发金果效果",
+        add("ega",      "金果魂石",       "血量过低时自动触发金果效果",
                 FeatureDef.Type.MF_PIN, CORE_SUPERNATURAL, MF_EGA_CD, union(supAgg, EGA));
-        add("thesea",   "潮水魂石",       "水中悬浮并熄灭自身火焰",
+        add("thesea",   "潮水魂石",       "于水中不再下沉，自动熄灭身上火焰",
                 FeatureDef.Type.SST, CORE_SUPERNATURAL, null, union(supAgg, THE_SEA));
-        add("mending",  "经验修补魂石",   "定期修补主副手物品",
+        add("mending",  "修复魂石",       "定期修补主副手物品与盔甲",
                 FeatureDef.Type.SST, CORE_SUPERNATURAL, null, union(supAgg, MENDING));
 
-        // ===== 实体之魂聚合 + 6 子魂石 =====
+        // ===== 生灵之魂聚合 + 6 子魂石 =====
         Set<String> entityAgg = Set.of(SOUL_OF_ENTITY, SOUL_OF_INOLIA);
-        // 击中着火是狱火魂石(烈焰人)的子功能，用 MF_OPEN
-        add("fire", "击中实体着火", "攻击命中时点燃目标（狱火/烈焰人魂石）",
+        // 击中着火是狱灵魂石(烈焰人)的子功能，用 MF_OPEN
+        add("fire", "魂石点燃目标", "攻击命中时点燃目标（狱灵魂石）",
                 FeatureDef.Type.MF_OPEN, CORE_ENTITY, MF_FIRE_OPEN, Set.of(SOUL_OF_ENTITY, SOUL_OF_INOLIA, BLAZE));
-        add("tracking", "弹射物追踪", "投射物自动追踪目标",
+        add("tracking", "弹射物追踪", "穿戴者释放的弹射物自动追踪目标",
                 FeatureDef.Type.MF_OPEN, CORE_ENTITY, MF_TRACK_OPEN, Set.of(SOUL_OF_INOLIA));
-        addSoul("death_soul_stone",       "死亡魂石",   "亡灵亲和·亡灵治疗·亡灵不攻击",       CORE_ENTITY, "soul_of_entity", union(entityAgg, DEATH));
-        addSoul("arthropod_soul_stone",   "节肢魂石",   "蜘蛛攀爬·节肢减伤·毒伤免疫",         CORE_ENTITY, "soul_of_entity", union(entityAgg, ARTHROPOD));
-        addSoul("animal_soul_stone",      "动物魂石",   "动物不逃·额外掉落·繁殖加速",         CORE_ENTITY, "soul_of_entity", union(entityAgg, ANIMAL));
-        addSoul("aquatic_soul_stone",     "水生魂石",   "海豚恩惠·水行·鱼群额外掉落",         CORE_ENTITY, "soul_of_entity", union(entityAgg, AQUATIC));
-        addSoul("wing_soul_stone",        "羽翼魂石",   "滑翔·缓降·鞘翅飞行加速",             CORE_ENTITY, "soul_of_entity", union(entityAgg, WING));
+        addSoul("blaze_soul_stone",       "狱灵魂石",   "攻击点燃目标，对燃烧目标增伤",      CORE_ENTITY, "soul_of_entity", union(entityAgg, BLAZE));
+        addSoul("death_soul_stone",       "亡灵魂石",   "对亡灵生物造成伤害时获得伤害增幅",  CORE_ENTITY, "soul_of_entity", union(entityAgg, DEATH));
+        addSoul("arthropod_soul_stone",   "节肢魂石",   "对节肢生物造成伤害时获得伤害增幅",  CORE_ENTITY, "soul_of_entity", union(entityAgg, ARTHROPOD));
+        addSoul("animal_soul_stone",      "动物魂石",   "击杀生物时额外掉落战利品",          CORE_ENTITY, "soul_of_entity", union(entityAgg, ANIMAL));
+        addSoul("aquatic_soul_stone",     "水生魂石",   "持续水下呼吸，水中/雨中增伤",       CORE_ENTITY, "soul_of_entity", union(entityAgg, AQUATIC));
+        addSoul("wing_soul_stone",        "飞翼魂石",   "提升飞行速度，免疫摔落伤害",        CORE_ENTITY, "soul_of_entity", union(entityAgg, WING));
 
         // ===== 伊始之魂（万能聚合，整体开关） =====
-        addSoul("soul_of_inolia", "伊始之魂", "万能聚合魂石，可整体开关", CORE_INOLIA, null);
+        addSoul("soul_of_inolia", "伊始之魂", "视为穿戴所有魂石，可整体开关", CORE_INOLIA, null);
 
         // ================================================================
         // ====== 联动 mod 魂石 ===========================================
         // ================================================================
 
-        // ===== 灾变 (Cataclysm) =====
+        // ===== 灾变之魂 (Cataclysm) =====
         addSoul("soul_of_cataclysm", "灾变之魂", "综合灾变联动效果，可整体开关", CATACLYSM, null);
-        addSoul("ignis_soul_stone",               "炽焰魂石",             "击中施加燃烧烙印，可升级",               CATACLYSM, "soul_of_cataclysm");
-        addSoul("the_leviathan_soul_stone",       "利维坦之魂石",         "水中增伤·深渊诅咒·离水减伤",            CATACLYSM, "soul_of_cataclysm");
-        addSoul("maledictus_soul_stone",          "诅咒者之魂石",         "概率完全免除本次伤害",                   CATACLYSM, "soul_of_cataclysm");
-        addSoul("ender_guardian_soul_stone",      "末影守卫者之魂石",     "击中概率眩晕目标",                       CATACLYSM, "soul_of_cataclysm");
-        addSoul("ancient_remnant_soul_stone",     "远古残骸之魂石",       "击中施加骨折·韧性加成",                 CATACLYSM, "soul_of_cataclysm");
-        addSoul("the_harbinger_soul_stone",       "先驱者之魂石",         "降低目标无敌帧",                         CATACLYSM, "soul_of_cataclysm");
-        addSoul("netherite_monstrosity_soul_stone","下界合金恶兽之魂石",   "击中施加骇人效果",                       CATACLYSM, "soul_of_cataclysm");
-        addSoul("scylla_soul_stone",              "斯库拉之魂石",         "击中施加潮湿·额外水伤",                  CATACLYSM, "soul_of_cataclysm");
+        addSoul("ignis_soul_stone",                "焰魔魂石",             "攻击附加炽热烙印可升级，熔岩行走",       CATACLYSM, "soul_of_cataclysm");
+        addSoul("the_leviathan_soul_stone",        "利维坦魂石",           "攻击附加深渊诅咒，水中增伤·离水减伤",    CATACLYSM, "soul_of_cataclysm");
+        addSoul("maledictus_soul_stone",           "咒翼灵骸魂石",         "概率免疫伤害，致命伤时回血",              CATACLYSM, "soul_of_cataclysm");
+        addSoul("ender_guardian_soul_stone",       "末影守卫魂石",         "攻击概率赋予晕眩效果",                   CATACLYSM, "soul_of_cataclysm");
+        addSoul("ancient_remnant_soul_stone",      "远古遗魂魂石",         "提升护甲韧性，攻击附加骨裂",             CATACLYSM, "soul_of_cataclysm");
+        addSoul("the_harbinger_soul_stone",        "先驱者魂石",           "攻击减少目标无敌时间",                   CATACLYSM, "soul_of_cataclysm");
+        addSoul("netherite_monstrosity_soul_stone","下界合金巨兽魂石",     "攻击概率获得骇人之恶",                   CATACLYSM, "soul_of_cataclysm");
+        addSoul("scylla_soul_stone",               "斯库拉魂石",           "攻击附加潮湿，对潮湿目标增伤",           CATACLYSM, "soul_of_cataclysm");
 
-        // ===== 暮色森林 (Twilight Forest) =====
+        // ===== 暮色之魂 (Twilight Forest - Boss) =====
         addSoul("soul_of_twilight", "暮色之魂", "综合暮色Boss联动效果，可整体开关", TWILIGHT, null);
-        addSoul("naga_soul_stone",             "娜加之魂石",         "移速加成",                                   TWILIGHT, "soul_of_twilight");
-        addSoul("zombie_scepter_soul_stone",   "僵尸权杖之魂石",     "攻击时召唤僵尸",                             TWILIGHT, "soul_of_twilight");
-        addSoul("lifedrain_soul_stone",        "生命汲取之魂石",     "攻击时吸血",                                 TWILIGHT, "soul_of_twilight");
-        addSoul("fortification_soul_stone",    "堡垒之魂石",         "防御加成",                                   TWILIGHT, "soul_of_twilight");
-        addSoul("twilight_lich_soul_stone",    "暮色巫妖之魂石",     "巫妖联动效果",                               TWILIGHT, "soul_of_twilight");
-        addSoul("minoshroom_soul_stone",       "米诺菇之魂石",       "穿甲·破坏盾牌",                              TWILIGHT, "soul_of_twilight");
-        addSoul("twilight_hydra_soul_stone",   "暮色九头蛇之魂石",   "生命越低伤害与回血越高",                     TWILIGHT, "soul_of_twilight");
-        addSoul("knight_phantom_soul_stone",   "骑士幽魂之魂石",     "护甲阈值额外伤害",                           TWILIGHT, "soul_of_twilight");
-        addSoul("ur_ghast_soul_stone",         "恶魂之魂石",         "大额伤害减免",                               TWILIGHT, "soul_of_twilight");
-        addSoul("alpha_yeti_soul_stone",       "雪怪首领之魂石",     "攻击概率冰冻",                               TWILIGHT, "soul_of_twilight");
-        addSoul("snow_queen_soul_stone",       "雪后之魂石",         "攻击概率寒冰",                               TWILIGHT, "soul_of_twilight");
-        addSoul("soul_of_twilightforest", "暮色森林之魂", "综合暮色材料联动效果，可整体开关", TWILIGHT, null);
-        addSoul("ironwood_soul_stone",         "铁木之魂石",         "护甲与韧性加成",                             TWILIGHT, "soul_of_twilightforest");
-        addSoul("steeleaf_soul_stone",         "钢叶之魂石",         "经验修补",                                   TWILIGHT, "soul_of_twilightforest");
-        addSoul("fiery_iron_soul_stone",       "炽铁之魂石",         "攻击时点燃目标",                             TWILIGHT, "soul_of_twilightforest");
-        addSoul("fluffy_cloud_soul_stone",     "绒云之魂石",         "离地时减伤",                                 TWILIGHT, "soul_of_twilightforest");
-        addSoul("twilight_giant_soul_stone",   "暮色巨人之魂石",     "攻击与触及距离加成",                         TWILIGHT, "soul_of_twilightforest");
-        addSoul("quest_ram_soul_stone",        "任务羊之魂石",       "魔法伤害减免",                               TWILIGHT, "soul_of_twilightforest");
+        addSoul("naga_soul_stone",             "娜迦魂石",         "提升移动速度，回复数额提升",             TWILIGHT, "soul_of_twilight");
+        addSoul("zombie_scepter_soul_stone",   "尸巫魂石",         "攻击时召唤忠诚僵尸",                     TWILIGHT, "soul_of_twilight");
+        addSoul("lifedrain_soul_stone",        "血巫魂石",         "造成伤害时回复生命/饥饿/饱和",           TWILIGHT, "soul_of_twilight");
+        addSoul("fortification_soul_stone",    "光巫魂石",         "造成伤害时生成巫妖护盾",                 TWILIGHT, "soul_of_twilight");
+        addSoul("twilight_lich_soul_stone",    "巫妖魂石",         "巫妖联动效果",                           TWILIGHT, "soul_of_twilight");
+        addSoul("minoshroom_soul_stone",       "米诺菇魂石",       "攻击破盾并无视护甲",                     TWILIGHT, "soul_of_twilight");
+        addSoul("twilight_hydra_soul_stone",   "九头蛇魂石",       "受非范围伤害减免，失血越多回血/增伤越高",TWILIGHT, "soul_of_twilight");
+        addSoul("knight_phantom_soul_stone",   "幻影骑士魂石",     "目标护甲越高伤害增幅越大",               TWILIGHT, "soul_of_twilight");
+        addSoul("ur_ghast_soul_stone",         "暮初恶魂魂石",     "受击后获得伤害减免",                     TWILIGHT, "soul_of_twilight");
+        addSoul("alpha_yeti_soul_stone",       "雪怪首领魂石",     "提升生命值，攻击对周围造成冰霜伤害",     TWILIGHT, "soul_of_twilight");
+        addSoul("snow_queen_soul_stone",       "冰雪女王魂石",     "攻击对目标周围造成冰霜伤害",             TWILIGHT, "soul_of_twilight");
 
-        // ===== 莱特兰恶意 (L2Hostility) =====
-        addSoul("soul_of_l2hostility", "莱特兰恶意之魂", "综合恶意联动效果，可整体开关", L2_HOSTILITY, null);
-        addSoul("body_hostility_soul_stone",      "肉体恶意魂石",   "生命护甲加成·自适应减伤",                   L2_HOSTILITY, "soul_of_l2hostility");
-        addSoul("corrosion_hostility_soul_stone", "腐蚀恶意魂石",   "攻击施加多种负面效果",                     L2_HOSTILITY, "soul_of_l2hostility");
-        addSoul("resistance_hostility_soul_stone","抗性恶意魂石",   "火/魔/物/投射减伤",                        L2_HOSTILITY, "soul_of_l2hostility");
-        addSoul("aqua_hostility_soul_stone",      "水域恶意魂石",   "水域附近增伤与减伤",                       L2_HOSTILITY, "soul_of_l2hostility");
-        addSoul("zone_hostility_soul_stone",      "领域恶意魂石",   "阻止附近实体传送",                         L2_HOSTILITY, "soul_of_l2hostility");
-        addSoul("destroy_hostility_soul_stone",   "毁灭恶意魂石",   "根据目标debuff数增伤",                     L2_HOSTILITY, "soul_of_l2hostility");
-        addSoul("ultra_hostility_soul_stone",     "极致恶意魂石",   "周期性斩杀·附魔权重增伤",                  L2_HOSTILITY, "soul_of_l2hostility");
+        // ===== 暮光之魂 (Twilight Forest - Materials) =====
+        addSoul("soul_of_twilightforest", "暮光之魂", "综合暮色材料联动效果，可整体开关", TWILIGHT, null);
+        addSoul("ironwood_soul_stone",         "铁木魂石",         "提升护甲值与护甲韧性",                   TWILIGHT, "soul_of_twilightforest");
+        addSoul("steeleaf_soul_stone",         "钢叶魂石",         "定期为主副手物品与盔甲回复耐久",         TWILIGHT, "soul_of_twilightforest");
+        addSoul("fiery_iron_soul_stone",       "炽铁魂石",         "攻击点燃目标并回复生命",                 TWILIGHT, "soul_of_twilightforest");
+        addSoul("fluffy_cloud_soul_stone",     "浮云魂石",         "受到未站立地面目标的伤害时减免",         TWILIGHT, "soul_of_twilightforest");
+        addSoul("twilight_giant_soul_stone",   "巨人魂石",         "提升实体范围与方块范围",                 TWILIGHT, "soul_of_twilightforest");
+        addSoul("quest_ram_soul_stone",        "迷题羊魂石",       "减少受到的原版/铁魔法/魔艺魔法伤害",     TWILIGHT, "soul_of_twilightforest");
 
-        // ===== 莱特兰扩充 (L2Complements) =====
-        addSoul("soul_of_l2_complements", "莱特兰扩充之魂", "综合扩充联动效果，可整体开关", L2_COMPLEMENTS, null);
-        addSoul("totemic_complements_soul_stone",    "图腾扩充魂石",   "治疗·净化负面效果",                 L2_COMPLEMENTS, "soul_of_l2_complements");
-        addSoul("poseidite_complements_soul_stone",  "海神石扩充魂石", "水中攻击力·对节肢增伤",             L2_COMPLEMENTS, "soul_of_l2_complements");
-        addSoul("shulkerate_complements_soul_stone", "希尔扩充魂石",   "固定减伤·触及距离",                 L2_COMPLEMENTS, "soul_of_l2_complements");
-        addSoul("sculkium_complements_soul_stone",   "幽匿扩充魂石",   "暗处增伤与减伤",                     L2_COMPLEMENTS, "soul_of_l2_complements");
-        addSoul("eternium_complements_soul_stone",   "永恒扩充魂石",   "经验修补",                           L2_COMPLEMENTS, "soul_of_l2_complements");
+        // ===== 恶意之魂 (L2Hostility) =====
+        addSoul("soul_of_l2hostility", "恶意之魂", "综合恶意联动效果，可整体开关", L2_HOSTILITY, null);
+        addSoul("body_hostility_soul_stone",      "锻体魂石",   "生命护甲韧性加成，自适应减伤",           L2_HOSTILITY, "soul_of_l2hostility");
+        addSoul("corrosion_hostility_soul_stone", "腐蚀魂石",   "攻击附加多种负面效果",                  L2_HOSTILITY, "soul_of_l2hostility");
+        addSoul("resistance_hostility_soul_stone","四相魂石",   "火/物理/魔法/弹射物减伤",                L2_HOSTILITY, "soul_of_l2hostility");
+        addSoul("aqua_hostility_soul_stone",      "禁域魂石",   "范围内作战增伤减伤，随从增益",          L2_HOSTILITY, "soul_of_l2hostility");
+        addSoul("zone_hostility_soul_stone",      "疆域魂石",   "受伤反伤，禁止附近实体传送",            L2_HOSTILITY, "soul_of_l2hostility");
+        addSoul("destroy_hostility_soul_stone",   "毁坏魂石",   "清除目标正面效果，对同名实体真伤",      L2_HOSTILITY, "soul_of_l2hostility");
+        addSoul("ultra_hostility_soul_stone",     "神躯魂石",   "死亡回血，周期性范围魔法伤害",          L2_HOSTILITY, "soul_of_l2hostility");
 
-        // ===== 神秘遗物 (EnigmaticLegacy) =====
-        addSoul("soul_of_enigmatic_legacy", "神秘遗物之魂", "综合遗物联动效果，可整体开关", ENIGMATIC, null);
-        addSoul("curses_soul_stone",    "诅咒之魂石",   "诅咒相关效果",                 ENIGMATIC, "soul_of_enigmatic_legacy");
-        addSoul("abyss_soul_stone",     "深渊之魂石",   "击杀计数增伤·减速敌人",        ENIGMATIC, "soul_of_enigmatic_legacy");
-        addSoul("etherium_soul_stone",  "以太之魂石",   "固定减伤·生命上限",            ENIGMATIC, "soul_of_enigmatic_legacy");
+        // ===== 恶锭之魂 (L2Complements) =====
+        addSoul("soul_of_l2_complements", "恶锭之魂", "综合扩充联动效果，可整体开关", L2_COMPLEMENTS, null);
+        addSoul("totemic_complements_soul_stone",    "生命魂石",   "对亡灵增伤，净化饥饿/凋零/中毒",         L2_COMPLEMENTS, "soul_of_l2_complements");
+        addSoul("poseidite_complements_soul_stone",  "海神魂石",   "水中/雨中增伤，对水生生物额外增伤",      L2_COMPLEMENTS, "soul_of_l2_complements");
+        addSoul("shulkerate_complements_soul_stone", "潜影魂石",   "提升攻击/触及距离，潜行减伤",            L2_COMPLEMENTS, "soul_of_l2_complements");
+        addSoul("sculkium_complements_soul_stone",   "幽匿魂石",   "暗处增伤减伤，清除多种负面效果",         L2_COMPLEMENTS, "soul_of_l2_complements");
+        addSoul("eternium_complements_soul_stone",   "永恒魂石",   "每秒回复工具与护甲耐久",                 L2_COMPLEMENTS, "soul_of_l2_complements");
 
-        // ===== 诡厄巫法·物品 (Goety Item) =====
-        addSoul("soul_of_goety_item", "诡厄巫法·物之魂", "综合巫法物品联动效果，可整体开关", GOETY_ITEM, null);
-        addSoul("ectoplasm_soul_stone",      "灵质之魂石",     "击杀时额外掉落",                 GOETY_ITEM, "soul_of_goety_item");
-        addSoul("goety_focus_soul_stone",    "巫法焦点之魂石", "法术强度加成",                   GOETY_ITEM, "soul_of_goety_item");
-        addSoul("order_about_soul_stone",    "差遣之魂石",     "攻击时令随从攻击目标",           GOETY_ITEM, "soul_of_goety_item");
-        addSoul("escort_soul_stone",         "护卫之魂石",     "随从受伤减免",                   GOETY_ITEM, "soul_of_goety_item");
-        addSoul("brew_soul_stone",           "酿造之魂石",     "饮用时触发增益",                 GOETY_ITEM, "soul_of_goety_item");
-        addSoul("legion_soul_stone",         "军团之魂石",     "随从增强",                       GOETY_ITEM, "soul_of_goety_item");
-        addSoul("goety_dark_soul_stone",     "暗黑之魂石",     "火/爆/魔减伤",                   GOETY_ITEM, "soul_of_goety_item");
+        // ===== 神秘之魂 (EnigmaticLegacy) =====
+        addSoul("soul_of_enigmatic_legacy", "神秘之魂", "综合遗物联动效果，可整体开关", ENIGMATIC, null);
+        addSoul("curses_soul_stone",    "溢咒魂石",   "千咒卷轴记入诅咒数量加倍",              ENIGMATIC, "soul_of_enigmatic_legacy");
+        addSoul("abyss_soul_stone",     "深渊魂石",   "攻击吸血，注视目标减速，击杀增伤",      ENIGMATIC, "soul_of_enigmatic_legacy");
+        addSoul("etherium_soul_stone",  "以太魂石",   "限制生命上限，获得独立减伤与以太护盾",  ENIGMATIC, "soul_of_enigmatic_legacy");
 
-        // ===== 诡厄巫法·实体 (Goety Entity) =====
-        addSoul("soul_of_goety_entity", "诡厄巫法·实体之魂", "综合巫法实体联动效果，可整体开关", GOETY_ENTITY, null);
-        addSoul("apostle_soul_stone",               "使徒之魂石",         "魔法减伤·生命阈值回血",          GOETY_ENTITY, "soul_of_goety_entity");
-        addSoul("nether_apostle_soul_stone",        "下界使徒之魂石",     "净化负面·燃烧诅咒",              GOETY_ENTITY, "soul_of_goety_entity");
-        addSoul("vizier_soul_stone",                "维齐尔之魂石",       "死亡相关效果",                   GOETY_ENTITY, "soul_of_goety_entity");
-        addSoul("redstone_monstrosity_soul_stone",  "红石巨兽之魂石",     "生命上限·百分比固定伤害",        GOETY_ENTITY, "soul_of_goety_entity");
-        addSoul("ender_keeper_soul_stone",          "末影守卫之魂石",     "虚空之触·近距离减伤",            GOETY_ENTITY, "soul_of_goety_entity");
-        addSoul("minister_soul_stone",              "牧师之魂石",         "友方增益·敌方削弱",             GOETY_ENTITY, "soul_of_goety_entity");
+        // ===== 诡物之魂 (Goety - Item) =====
+        addSoul("soul_of_goety_item", "诡物之魂", "综合巫法物品联动效果，可整体开关", GOETY_ITEM, null);
+        addSoul("ectoplasm_soul_stone",      "灵质魂石",     "击杀生物时额外获得灵魂能量",           GOETY_ITEM, "soul_of_goety_item");
+        addSoul("goety_focus_soul_stone",    "聚晶魂石",     "聚晶附魔时提升附魔等级",               GOETY_ITEM, "soul_of_goety_item");
+        addSoul("order_about_soul_stone",    "驱役魂石",     "随从增伤，攻击时转移随从仇恨",         GOETY_ITEM, "soul_of_goety_item");
+        addSoul("escort_soul_stone",         "护卫魂石",     "随从获得伤害减免",                     GOETY_ITEM, "soul_of_goety_item");
+        addSoul("brew_soul_stone",           "药酿魂石",     "饮用药酿/药水时概率不消耗",            GOETY_ITEM, "soul_of_goety_item");
+        addSoul("legion_soul_stone",         "军团魂石",     "随从提升穿戴者生命/攻击/移速",         GOETY_ITEM, "soul_of_goety_item");
+        addSoul("goety_dark_soul_stone",     "诡暗魂石",     "清除黑暗/失明，火/爆/魔减伤",           GOETY_ITEM, "soul_of_goety_item");
 
-        // ===== 冰火传说·龙 (Ice and Fire - Dragon) =====
-        addSoul("soul_of_iaf_dragon", "冰火龙之魂", "综合龙类联动效果，可整体开关", IAF_DRAGON, null);
-        addSoul("dragon_bone_soul_stone",              "龙骨之魂石",       "对龙增伤·对龙减伤",              IAF_DRAGON, "soul_of_iaf_dragon");
-        addSoul("fire_dragon_blood_soul_stone",        "火龙血之魂石",     "燃烧增伤·冰龙克制",              IAF_DRAGON, "soul_of_iaf_dragon");
-        addSoul("ice_dragon_blood_soul_stone",         "冰龙血之魂石",     "冰冻效果·火龙克制",              IAF_DRAGON, "soul_of_iaf_dragon");
-        addSoul("lightning_dragon_blood_soul_stone",   "雷龙血之魂石",     "雷/冰/火龙克制",                 IAF_DRAGON, "soul_of_iaf_dragon");
-        addSoul("fire_dragon_steel_soul_stone",        "火龙钢之魂石",     "对龙减伤·护甲",                  IAF_DRAGON, "soul_of_iaf_dragon");
-        addSoul("ice_dragon_steel_soul_stone",         "冰龙钢之魂石",     "对龙减伤·护甲",                  IAF_DRAGON, "soul_of_iaf_dragon");
-        addSoul("lightning_dragon_steel_soul_stone",   "雷龙钢之魂石",     "对龙减伤·护甲",                  IAF_DRAGON, "soul_of_iaf_dragon");
+        // ===== 诡厄之魂 (Goety - Entity) =====
+        addSoul("soul_of_goety_entity", "诡厄之魂", "综合巫法实体联动效果，可整体开关", GOETY_ENTITY, null);
+        addSoul("apostle_soul_stone",               "使徒魂石",         "单次伤害封顶，致命伤回血，造成伤害回血",GOETY_ENTITY, "soul_of_goety_entity");
+        addSoul("nether_apostle_soul_stone",        "诡使魂石",         "免疫火焰，定期回血，攻击附加侵蚀",      GOETY_ENTITY, "soul_of_goety_entity");
+        addSoul("vizier_soul_stone",                "灾厄宰相魂石",     "聚晶附魔等级提升，致命时献祭怒鬼回血",  GOETY_ENTITY, "soul_of_goety_entity");
+        addSoul("redstone_monstrosity_soul_stone",  "红石巨兽魂石",     "提升生命上限，攻击附加目标当前生命伤害",GOETY_ENTITY, "soul_of_goety_entity");
+        addSoul("ender_keeper_soul_stone",          "末影守望者魂石",   "攻击附加虚空之蚀，对范围外实体减伤",    GOETY_ENTITY, "soul_of_goety_entity");
+        addSoul("minister_soul_stone",              "灾厄教父魂石",     "随从获得抗性/再生，非随从实体虚弱",     GOETY_ENTITY, "soul_of_goety_entity");
 
-        // ===== 冰火传说·实体 (Ice and Fire - Entity) =====
-        addSoul("soul_of_iaf_entity", "冰火实体之魂", "综合冰火实体联动效果，可整体开关", IAF_ENTITY, null);
-        addSoul("cyclops_soul_stone",       "独眼巨人之魂石",     "附近敌人虚弱",                  IAF_ENTITY, "soul_of_iaf_entity");
-        addSoul("gorgon_soul_stone",        "戈尔贡之魂石",       "减速最近敌人",                  IAF_ENTITY, "soul_of_iaf_entity");
-        addSoul("iaf_hydra_soul_stone",     "冰火九头蛇之魂石",   "生命越低回血越多",              IAF_ENTITY, "soul_of_iaf_entity");
-        addSoul("iaf_siren_soul_stone",     "冰海妖之魂石",       "海妖相关效果",                  IAF_ENTITY, "soul_of_iaf_entity");
-        addSoul("sea_serpent_soul_stone",   "海蛇之魂石",         "水中伤害加成",                  IAF_ENTITY, "soul_of_iaf_entity");
-        addSoul("troll_soul_stone",         "巨魔之魂石",         "投射物减伤",                    IAF_ENTITY, "soul_of_iaf_entity");
-        addSoul("hippocampus_soul_stone",   "马头鱼之魂石",       "游泳速度",                      IAF_ENTITY, "soul_of_iaf_entity");
-        addSoul("death_worm_soul_stone",    "死亡蠕虫之魂石",     "触及距离加成",                  IAF_ENTITY, "soul_of_iaf_entity");
+        // ===== 巨龙之魂 (Ice and Fire - Dragon) =====
+        addSoul("soul_of_iaf_dragon", "巨龙之魂", "综合龙类联动效果，可整体开关", IAF_DRAGON, null);
+        addSoul("dragon_bone_soul_stone",              "龙骨魂石",       "对冰火巨龙增伤减伤，无视护甲",          IAF_DRAGON, "soul_of_iaf_dragon");
+        addSoul("fire_dragon_blood_soul_stone",        "炎血魂石",       "攻击点燃目标，对冰龙增伤",              IAF_DRAGON, "soul_of_iaf_dragon");
+        addSoul("ice_dragon_blood_soul_stone",         "霜血魂石",       "攻击附加缓慢/挖掘疲劳/冰冻，对火龙增伤",IAF_DRAGON, "soul_of_iaf_dragon");
+        addSoul("lightning_dragon_blood_soul_stone",   "霆血魂石",       "攻击附加雷电伤害，对火/冰龙增伤",       IAF_DRAGON, "soul_of_iaf_dragon");
+        addSoul("fire_dragon_steel_soul_stone",        "龙炎魂石",       "提升护甲韧性，攻击附加火焰伤害",        IAF_DRAGON, "soul_of_iaf_dragon");
+        addSoul("ice_dragon_steel_soul_stone",         "龙霜魂石",       "提升护甲韧性，攻击附加冻结伤害",        IAF_DRAGON, "soul_of_iaf_dragon");
+        addSoul("lightning_dragon_steel_soul_stone",   "龙霆魂石",       "提升护甲韧性，攻击附加雷电伤害",        IAF_DRAGON, "soul_of_iaf_dragon");
 
-        // ===== 七罪之子 (Sons of Sins) =====
-        addSoul("soul_of_sons_of_sins", "七罪之子之魂", "综合七罪联动效果，可整体开关", SONS_OF_SINS, null);
-        addSoul("envy_sin_soul_stone",      "嫉妒之罪魂石",   "攻速移速加成·额外伤害",         SONS_OF_SINS, "soul_of_sons_of_sins");
-        addSoul("gluttony_sin_soul_stone",  "暴食之罪魂石",   "击杀计数增伤·额外掉落",         SONS_OF_SINS, "soul_of_sons_of_sins");
-        addSoul("greed_sin_soul_stone",     "贪婪之罪魂石",   "免疫窒息·投射减伤",             SONS_OF_SINS, "soul_of_sons_of_sins");
-        addSoul("lust_sin_soul_stone",      "色欲之罪魂石",   "穿甲·投射减伤",                 SONS_OF_SINS, "soul_of_sons_of_sins");
-        addSoul("pride_sin_soul_stone",     "傲慢之罪魂石",   "生命比例增伤",                   SONS_OF_SINS, "soul_of_sons_of_sins");
-        addSoul("sloth_sin_soul_stone",     "怠惰之罪魂石",   "减速目标·生命加成",             SONS_OF_SINS, "soul_of_sons_of_sins");
-        addSoul("wrath_sin_soul_stone",     "愤怒之罪魂石",   "额外伤害",                       SONS_OF_SINS, "soul_of_sons_of_sins");
+        // ===== 冰火之魂 (Ice and Fire - Entity) =====
+        addSoul("soul_of_iaf_entity", "冰火之魂", "综合冰火实体联动效果，可整体开关", IAF_ENTITY, null);
+        addSoul("cyclops_soul_stone",       "独眼巨人魂石",     "持续为周围实体附加虚弱",                IAF_ENTITY, "soul_of_iaf_entity");
+        addSoul("gorgon_soul_stone",        "蛇发女妖魂石",     "对注视的实体持续附加缓慢",              IAF_ENTITY, "soul_of_iaf_entity");
+        addSoul("iaf_hydra_soul_stone",     "九头蛇魂石",       "每秒回血，失血越多回血越高",            IAF_ENTITY, "soul_of_iaf_entity");
+        addSoul("iaf_siren_soul_stone",     "塞壬魂石",         "攻击魅惑目标",                         IAF_ENTITY, "soul_of_iaf_entity");
+        addSoul("sea_serpent_soul_stone",   "海蟒魂石",         "雨中或水中持续获得力量",                IAF_ENTITY, "soul_of_iaf_entity");
+        addSoul("troll_soul_stone",         "食人妖魂石",       "提供弹射物伤害减免",                   IAF_ENTITY, "soul_of_iaf_entity");
+        addSoul("hippocampus_soul_stone",   "海马魂石",         "提升游泳速度，攻击施加缓慢/反胃",       IAF_ENTITY, "soul_of_iaf_entity");
+        addSoul("death_worm_soul_stone",    "死亡蠕虫魂石",     "提升攻击距离",                         IAF_ENTITY, "soul_of_iaf_entity");
 
-        // ===== 农夫乐事 (Farmer's Delight) =====
-        addSoul("farmers_delight_soul_stone", "农夫乐事之魂石", "食用时概率触发饱和与急迫", FARMERS_DELIGHT, null);
+        // ===== 七罪之魂 (Sons of Sins) =====
+        addSoul("soul_of_sons_of_sins", "七罪之魂", "综合七罪联动效果，可整体开关", SONS_OF_SINS, null);
+        addSoul("envy_sin_soul_stone",      "嫉妒魂石",   "提升攻速/伤害，疾跑时移速提升",         SONS_OF_SINS, "soul_of_sons_of_sins");
+        addSoul("gluttony_sin_soul_stone",  "暴食魂石",   "击杀实体获得伤害增幅",                  SONS_OF_SINS, "soul_of_sons_of_sins");
+        addSoul("greed_sin_soul_stone",     "贪婪魂石",   "窒息伤害减免，击杀额外掉落战利品",      SONS_OF_SINS, "soul_of_sons_of_sins");
+        addSoul("lust_sin_soul_stone",      "色欲魂石",   "弹射物减伤，攻击无视护甲",              SONS_OF_SINS, "soul_of_sons_of_sins");
+        addSoul("pride_sin_soul_stone",     "傲慢魂石",   "对生命比例低于自身的目标增伤",          SONS_OF_SINS, "soul_of_sons_of_sins");
+        addSoul("sloth_sin_soul_stone",     "怠惰魂石",   "提升最大生命值，攻击施加缓慢",          SONS_OF_SINS, "soul_of_sons_of_sins");
+        addSoul("wrath_sin_soul_stone",     "暴怒魂石",   "降低最大生命值，获得伤害增幅",          SONS_OF_SINS, "soul_of_sons_of_sins");
+
+        // ===== 乐事魂石 (Farmer's Delight) =====
+        addSoul("farmers_delight_soul_stone", "乐事魂石", "进食时概率获得滋养与舒适效果", FARMERS_DELIGHT, null);
     }
 
     private FeatureRegistry() {}

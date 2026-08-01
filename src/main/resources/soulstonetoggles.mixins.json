@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.sst.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "soulstonetoggles.refmap.json",
+  "mixins": [
+    "MyGoUtilMixin",
+    "AccessoryEventHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

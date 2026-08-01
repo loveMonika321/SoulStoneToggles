@@ -1,0 +1,49 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+
+[[mixins]]
+config = "${mod_id}.mixins.json"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+authors="${mod_authors}"
+description='''
+${mod_description}
+
+为 MineFargo 魂石提供可视化开关 GUI：
+- 一个按键打开界面，列出当前穿戴的魂石及其子功能
+- 可单独开关磁铁/危险/着火/追踪（复用 MineFargo NBT 开关）
+- 可单独开关不死/金果/潮水/经验修补及各联动魂石子功能（通过 Mixin 拦截）
+- 支持暮色森林/灾变/莱特兰恶意/神秘遗物/农夫乐事/诡厄巫法/冰火传说/莱特兰扩充/七罪之子
+'''
+
+[[dependencies.${mod_id}]]
+    modId="forge"
+    mandatory=true
+    versionRange="${forge_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="curios"
+    mandatory=true
+    versionRange="[5.2.0-beta.3+1.20.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="mine_fargo"
+    mandatory=true
+    versionRange="[1.2.8,)"
+    ordering="AFTER"
+    side="BOTH"

@@ -1,8 +1,6 @@
 package com.sst;
 
 import com.sst.network.NetworkHandler;
-import com.sst.events.ServerEvents;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -14,7 +12,6 @@ public class SoulStoneToggles {
 
     public SoulStoneToggles() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
-        MinecraftForge.EVENT_BUS.register(ServerEvents.class);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

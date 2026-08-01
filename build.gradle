@@ -65,6 +65,10 @@ dependencies {
     // MineFargo 桩 jar：仅用于让 Mixin 注解处理器解析到目标类
     // （MyGoUtil.hasSupernatural），运行时由真实 MineFargo 提供。
     compileOnly files('libs/minefargo-stub.jar')
+    // AE2 桩类（AbstractTableRenderer/AEKey/GenericStack 等）：
+    // 只在编译阶段用来引用 AE2 类型以便 Mixin 注解处理器/Java 编译通过，
+    // 运行时由真实 Applied Energistics 2 提供。
+    compileOnly files('libs/ae2-stub.jar')
 }
 
 mixin {
@@ -105,4 +109,42 @@ apply plugin: 'org.spongepowered.mixin'
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.release = 17
+}
+
+// ===== AE2/MineFargo stub 编译任务：stubsrc → libs/*.jar（仅编译，不含依赖）=====
+// 不直接把 stubsrc 放进 sourceSets.main，否则 stub 类会被打进最终 jar，
+// 运行时可能和真实 AE2/MineFargo class 冲突。
+tasks.register('compileAe2Stub', JavaCompile) {
+    source = fileTree('stubsrc') { include 'appeng/**/*.java' }
+    classpath = files()
+    options.encoding = 'UTF-8'
+    options.release = 17
+    destinationDirectory = layout.buildDirectory.dir('stub-classes/ae2')
+    // stub 内部自包含（不依赖 Forge MC 映射——stub 源码里用 fqn 引用的 MC 类会通过 compileJava classpath）
+    // 所以把它接到 compileJava 的 classpath
+    doFirst {
+        classpath = tasks.compileJava.classpath
+    }
+}
+// 注意：不能用 Jar 任务，否则 MixinGradle 插件会给所有 Jar 任务注入
+// addMixinsToPackageAe2Stub → compileJava 的依赖，形成循环：
+//   compileJava → packageAe2Stub → addMixinsToPackageAe2Stub → compileJava
+// 所以改用 Zip 任务打 stub jar（内容和 jar 一致，只是不触发 mixin 自动织入）。
+tasks.register('packageAe2Stub', Zip) {
+    dependsOn compileAe2Stub
+    from compileAe2Stub
+    archiveBaseName = 'ae2-stub'
+    archiveExtension = 'jar'
+    destinationDirectory = file('libs')
+    doLast {
+        copy {
+            from archiveFile.get().asFile
+            into 'libs'
+            rename 'ae2-stub.*', 'ae2-stub.jar'
+        }
+    }
+}
+// 仅当 ae2-stub.jar 不存在时才触发 stub 构建（避免每次都绕一遍）
+if (!file('libs/ae2-stub.jar').exists()) {
+    tasks.compileJava.dependsOn packageAe2Stub
 }

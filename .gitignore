@@ -8,3 +8,4 @@ stubout
 .vscode
 .DS_Store
 run
+libs/ae2-stub*.jar

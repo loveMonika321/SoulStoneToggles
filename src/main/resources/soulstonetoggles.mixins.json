@@ -6,7 +6,8 @@
   "refmap": "soulstonetoggles.refmap.json",
   "mixins": [
     "MyGoUtilMixin",
-    "AccessoryEventHandlerMixin"
+    "AccessoryEventHandlerMixin",
+    "ae2.AE2AbstractTableRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

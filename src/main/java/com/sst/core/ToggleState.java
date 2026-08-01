@@ -11,7 +11,7 @@ import java.util.Map;
  *
  *  - MF_OPEN : 读 MineFargo 的 *_open（<=50 开, >50 关）；写 25/75。
  *  - MF_PIN  : 读时根据是否被钉高位判断；写时钉高位(关)/归零(开)。
- *  - SST     : 读 soulstonetoggles:&lt;id&gt;（==0 关, 否则开）；写 1/0。
+ *  - SST     : 读 soulstonetoggles:&lt;id&gt;（==1 关, 缺省/0 开）；写 0/1。默认全开。
  *
  * 注意：MF_PIN(金果) 的“关”靠 ServerEvents 每 tick 把冷却钉到高位实现。
  */

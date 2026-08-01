@@ -25,8 +25,8 @@ import java.util.Set;
  *   需 @Redirect 在调用前检查该魂石的整体开关。
  *
  * NBT 约定：soulstonetoggles:&lt;featureId&gt;
- *   缺省或非 0 = 开启（不拦截）
- *   == 0       = 关闭（拦截，返回 false / 跳过能力调用）
+ *   缺省或 0 = 开启（不拦截，默认值）
+ *   == 1      = 关闭（拦截，返回 false / 跳过能力调用）
  */
 public final class SSTFeatureGate {
     /** MineFargo 注册名 → 本 mod 功能 id */
@@ -102,15 +102,16 @@ public final class SSTFeatureGate {
         return DIRECT_CURIO_CHECK_ITEMS.contains(rl.toString());
     }
 
-    /** 该功能是否处于"开启"状态（缺省视为开启）。 */
+    /** 该功能是否处于"开启"状态（NBT 缺省或 0 视为开启——默认全开）。 */
     public static boolean isEnabled(LivingEntity living, String featureId) {
         if (living == null || featureId == null) return true;
-        return living.getPersistentData().getInt(key(featureId)) != 0;
+        return living.getPersistentData().getInt(key(featureId)) != 1;
     }
 
     public static void setEnabled(LivingEntity living, String featureId, boolean enabled) {
         if (living == null || featureId == null) return;
-        living.getPersistentData().putInt(key(featureId), enabled ? 1 : 0);
+        // 开 → 0（缺省值），关 → 1
+        living.getPersistentData().putInt(key(featureId), enabled ? 0 : 1);
     }
 
     /**

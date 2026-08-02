@@ -270,10 +270,29 @@ public final class FeatureRegistry {
 
     /** 返回当前装备命中的 provider 集合对应的所有可用功能。 */
     public static List<FeatureDef> availableFor(Set<String> equippedIds) {
+        // 扩展：若玩家装备了聚合容器（如 mine_fargo:soul_of_twilight），
+        // 则把属于该聚合的所有子项也视为"装备中"，这样它们的 provider 也能匹配。
+        Set<String> expanded = new HashSet<>(equippedIds);
+        for (FeatureDef f : FEATURES) {
+            if (isAggregateContainer(f.id)) {
+                // 聚合容器的第一个 provider 就是它自己的注册名
+                String selfKey = f.providers.iterator().next();
+                if (equippedIds.contains(selfKey)) {
+                    // 把所有 belongsTo 该聚合的子项的注册名也加进 expanded
+                    for (FeatureDef sub : FEATURES) {
+                        if (!isAggregateContainer(sub.id) && belongsToAggregate(sub.id, f.id)) {
+                            String subKey = MF + ":" + sub.id;
+                            expanded.add(subKey);
+                        }
+                    }
+                }
+            }
+        }
+
         List<FeatureDef> out = new ArrayList<>();
         for (FeatureDef f : FEATURES) {
             for (String p : f.providers) {
-                if (equippedIds.contains(p)) { out.add(f); break; }
+                if (expanded.contains(p)) { out.add(f); break; }
             }
         }
         return out;
@@ -377,6 +396,11 @@ public final class FeatureRegistry {
         String agg = SSTFeatureGate.lookupAggregateForRegistry(registryName);
         if (agg != null) return agg;
         return null;
+    }
+
+    /** 某子功能是否属于指定 aggregateId（通过 ITEM_TO_AGGREGATE 反查）。 */
+    private static boolean belongsToAggregate(String featureId, String aggregateId) {
+        return aggregateId.equals(lookupAggregateId(featureId));
     }
 
     /** 分组结构：某聚合容器 + 其下所有子功能；aggregate==null 表示"直接功能（无聚合）"。 */

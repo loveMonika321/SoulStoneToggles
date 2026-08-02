@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static com.sst.core.FeatureDef.Category.*;
@@ -306,6 +308,93 @@ public final class FeatureRegistry {
             if (f.category == cat) n++;
         }
         return n;
+    }
+
+    /**
+     * 把"某分类下的可用功能"按二级聚合分组。
+     *   - 聚合项：mineFargoKey==null && id==aggregateId（由 addSoul(id, ..., aggregateId==null) 添加，作为聚合容器）
+     *   - 子项：其 aggregateId 等于某聚合的 id，或没有 aggregateId（这些归入 "直接功能（无聚合）" 组）
+     *
+     * 返回分组的有序列表，每组包含：aggregate 本身（可为 null 表示"无聚合直接功能"）、子项列表。
+     */
+    public static List<FeatureGroup> availableGroupsInCategory(Set<String> equippedIds,
+                                                                FeatureDef.Category cat) {
+        // 1. 收齐本分类下所有可用功能
+        List<FeatureDef> all = new ArrayList<>();
+        for (FeatureDef f : availableFor(equippedIds)) {
+            if (f.category == cat) all.add(f);
+        }
+
+        // 2. 先找聚合容器（mineFargoKey==null 且无 aggregateId，自己就是聚合）
+        Map<String, List<FeatureDef>> byAggregate = new LinkedHashMap<>();
+        List<FeatureDef> topLevel = new ArrayList<>(); // 不属于任何聚合的顶层功能（如 magnet/hazard/ega/fire）
+        List<FeatureDef> aggregates = new ArrayList<>();
+
+        for (FeatureDef f : all) {
+            if (f.mineFargoKey == null && isAggregateContainer(f.id)) {
+                aggregates.add(f);
+                byAggregate.put(f.id, new ArrayList<>());
+            }
+        }
+        // 3. 归类子项
+        for (FeatureDef f : all) {
+            if (aggregates.contains(f)) continue;
+            String aggId = lookupAggregateId(f.id);
+            if (aggId != null && byAggregate.containsKey(aggId)) {
+                byAggregate.get(aggId).add(f);
+            } else {
+                topLevel.add(f);
+            }
+        }
+
+        // 4. 组装返回：先聚合（按注册顺序），再 topLevel 一组
+        List<FeatureGroup> out = new ArrayList<>();
+        for (FeatureDef agg : aggregates) {
+            out.add(new FeatureGroup(agg, byAggregate.get(agg.id)));
+        }
+        if (!topLevel.isEmpty()) {
+            out.add(new FeatureGroup(null, topLevel));
+        }
+        return out;
+    }
+
+    /** 功能是否为聚合容器（用 addSoul(id, ..., aggregateId==null) 添加）。 */
+    private static boolean isAggregateContainer(String id) {
+        for (FeatureDef f : FEATURES) {
+            if (f.id.equals(id) && f.type == FeatureDef.Type.SST && f.mineFargoKey == null
+                    && lookupAggregateId(id) == null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** 查找某功能所属的 aggregateId（通过 ITEM_TO_AGGREGATE 反向查，不存在返回 null）。 */
+    private static String lookupAggregateId(String featureId) {
+        // featureId → registryName (MF + ":featureId")
+        String registryName = MF + ":" + featureId;
+        // 聚合映射是从 registryName 聚合 ID 来的；用 SSTFeatureGate 的映射反向
+        String agg = SSTFeatureGate.lookupAggregateForRegistry(registryName);
+        if (agg != null) return agg;
+        return null;
+    }
+
+    /** 分组结构：某聚合容器 + 其下所有子功能；aggregate==null 表示"直接功能（无聚合）"。 */
+    public static class FeatureGroup {
+        /** 聚合容器本身（可能为 null，表示顶层无聚合功能）。 */
+        public final FeatureDef aggregate;
+        /** 聚合包含的子功能（aggregate==null 时就是顶层功能自己；aggregate!=null 时为子项）。 */
+        public final List<FeatureDef> features;
+        /** 分组标题。 */
+        public final Component title;
+
+        public FeatureGroup(FeatureDef aggregate, List<FeatureDef> features) {
+            this.aggregate = aggregate;
+            this.features = Collections.unmodifiableList(new ArrayList<>(features));
+            this.title = aggregate == null
+                    ? Component.literal("§7直接功能（无聚合）")
+                    : Component.literal("§e" + aggregate.name.getString() + " §7[聚合，可整体开关]");
+        }
     }
 
     // ===== 内部注册方法 =====

@@ -94,6 +94,11 @@ public final class SSTFeatureGate {
         return ITEM_TO_AGGREGATE.get(rl.toString());
     }
 
+    /** 反查：根据注册名（MF+":xxx"）返回其所属 aggregateId（供 FeatureRegistry 分组使用）。 */
+    public static String lookupAggregateForRegistry(String registryName) {
+        return ITEM_TO_AGGREGATE.get(registryName);
+    }
+
     /** 该 Item 是否使用 isCurioEquipped 直接判定（仅农夫乐事等少数魂石）。 */
     public static boolean usesDirectCurioCheck(Item item) {
         if (item == null) return false;

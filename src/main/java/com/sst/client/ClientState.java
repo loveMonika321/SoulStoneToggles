@@ -36,6 +36,10 @@ public final class ClientState {
         return FeatureRegistry.availableInCategory(equippedIdsCache, cat);
     }
 
+    public static List<FeatureRegistry.FeatureGroup> groupsInCategory(FeatureDef.Category cat) {
+        return FeatureRegistry.availableGroupsInCategory(equippedIdsCache, cat);
+    }
+
     public static int countInCategory(FeatureDef.Category cat) {
         int n = 0;
         for (FeatureDef f : available) {
@@ -66,8 +70,10 @@ public final class ClientState {
         Minecraft mc = Minecraft.getInstance();
         if (mc.screen instanceof com.sst.client.gui.CategoryScreen cs) {
             cs.refresh();
-        } else if (mc.screen instanceof com.sst.client.gui.ToggleScreen ts) {
-            ts.refresh();
+        } else if (mc.screen instanceof com.sst.client.gui.AggregateScreen ags) {
+            ags.refresh();
+        } else if (mc.screen instanceof com.sst.client.gui.FeatureScreen fs) {
+            fs.refresh();
         }
     }
 }

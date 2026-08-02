@@ -13,10 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 魂石功能开关 —— 一级分类页面。
- *
- * 显示当前装备中「至少有 1 项可开关功能」的所有分类（矿石/自然/实体/超然/伊始 + 各联动mod），
- * 点击分类按钮跳转 ToggleScreen 二级页面查看具体功能开关。
+ * 一级页面：魂石分类。
+ * 点击分类 → AggregateScreen（二级）。
+ * 打开时游戏自动暂停（isPauseScreen=true）。
  */
 public class CategoryScreen extends Screen {
 
@@ -34,6 +33,7 @@ public class CategoryScreen extends Screen {
 
     @Override
     protected void init() {
+        ClientState.refreshAvailable();
         refresh();
     }
 
@@ -58,12 +58,9 @@ public class CategoryScreen extends Screen {
             int btnW = PANEL_W - 24;
             int btnX = panelX + 12;
             int btnY = y + (ROW_H - 20) / 2;
-            String title = cat.title.getString();
-            String sub = cat.subtitle.getString();
             int count = ClientState.countInCategory(cat);
-            String label = String.format("  %s  §7%s  §8[%d项]", title, sub.isEmpty() ? "" : sub, count);
             addRenderableWidget(Button.builder(Component.literal("进入 →"),
-                            b -> Minecraft.getInstance().setScreen(new ToggleScreen(cat)))
+                            b -> Minecraft.getInstance().setScreen(new AggregateScreen(cat)))
                     .bounds(btnX + btnW - 72, btnY, 64, 20)
                     .build());
         }
@@ -110,10 +107,9 @@ public class CategoryScreen extends Screen {
 
         if (rows.size() > VISIBLE_ROWS) {
             int barX = panelX + PANEL_W + 2;
-            int barH = panelH;
-            int knobH = Math.max(14, barH * VISIBLE_ROWS / rows.size());
-            int knobY = topY + (barH - knobH) * scrollOffset / Math.max(1, maxScroll);
-            graphics.fill(barX, topY, barX + 3, topY + barH, 0x40FFFFFF);
+            int knobH = Math.max(14, panelH * VISIBLE_ROWS / rows.size());
+            int knobY = topY + (panelH - knobH) * scrollOffset / Math.max(1, maxScroll);
+            graphics.fill(barX, topY, barX + 3, topY + panelH, 0x40FFFFFF);
             graphics.fill(barX, knobY, barX + 3, knobY + knobH, 0xFFCCCCCC);
         }
 
@@ -128,8 +124,9 @@ public class CategoryScreen extends Screen {
         return true;
     }
 
+    /** 打开 GUI 时暂停游戏。 */
     @Override
     public boolean isPauseScreen() {
-        return false;
+        return true;
     }
 }
